@@ -40,8 +40,7 @@ namespace HairSalon.Controllers
       model.Add("clients", stylistClients);
       return View(model);
     }
-    //
-    // // This one creates new Clients within a given Stylist, not new Stylists:
+
     [HttpPost("/stylists/{stylistId}/clients")]
     public ActionResult Create(int stylistId, string clientName)
     {
@@ -51,7 +50,7 @@ namespace HairSalon.Controllers
       newClient.Save();
       // foundStylist.AddClient(newClient);
       List<Client> stylistClients = foundStylist.GetClients();
-      model.Add("clients", stylistClients);
+      model.Add("client", stylistClients);
       model.Add("stylist", newClient);
       return View("Show", model);
     }

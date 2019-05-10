@@ -76,7 +76,7 @@ namespace HairSalon.Models
         conn.Dispose();
       }
     }
-    
+
     public void Edit(string newName)
     {
       MySqlConnection conn = DB.Connection();
@@ -144,9 +144,9 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM clients WHERE id = (@thisId);";
+      cmd.CommandText = @"SELECT * FROM clients WHERE id = (@stylistId);";
       MySqlParameter thisId = new MySqlParameter();
-      thisId.ParameterName = "@thisId";
+      thisId.ParameterName = "@stylistId";
       thisId.Value = id;
       cmd.Parameters.Add(thisId);
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
