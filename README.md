@@ -17,6 +17,18 @@ _This program creates client-lists for distinct (hair) stylists_
 | Navigate by clicking to display a stylist's client list | Stylists: Krystal, Jamie, Mark [Clicking on a specific stylist's name (Krystal)]  | Displays client List for Krystal |
 | Click on client name to display name and servicing stylist | Mr Clean | Name: Mr. Clean, Stylist: Krystal |
 
+## Database Setup
+
+In mySQL:
+
+CREATE DATABASE firstName_LastName;
+
+\> USE firstName_LastName;
+
+\> CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255));
+
+\> CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), stylistId int FOREIGN KEY);
+
 
 ## Known Bugs
 
