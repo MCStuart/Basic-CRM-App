@@ -10,20 +10,36 @@ namespace HairSalon.Solution.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public IActionResult Privacy()
+        [TestClass]
+        public class HomeControllerTest
         {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+          [TestMethod]
+          public void Index_ReturnsCorrectView_True()
+          {
+            //Arrange
+            HomeController controller = new HomeController();
+
+            //Act
+            ActionResult indexView = controller.Index();
+
+            //Assert
+            Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+          }
+
+          [TestMethod]
+          public void Index_HasCorrectModelType_ItemList()
+          {
+            //Arrange
+            ViewResult indexView = new HomeController().Index() as ViewResult;
+
+            //Act
+            var result = indexView.ViewData.Model;
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(List<Item>));
+          }
         }
     }
 }
