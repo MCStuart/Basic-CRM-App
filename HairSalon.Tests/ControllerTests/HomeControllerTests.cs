@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HairSalon.Solution.Models;
+using HairSalon.Models;
 
-namespace HairSalon.Solution.Controllers
+namespace HairSalon.Tests.Controllers
 {
     public class HomeController : Controller
     {
