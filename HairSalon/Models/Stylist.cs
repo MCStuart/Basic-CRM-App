@@ -9,11 +9,11 @@ namespace HairSalon.Models
         public int stylist_id { get; set; }
         public string stylist_name { get; set; }
 
-        public Stylist(int stylist_id, string stylist_name)
-      {
-        stylist_id = stylist_id;
-        stylist_name = stylist_name;
-      }
+        public Stylist(int stylistId, string stylistName)
+        {
+            stylist_id = stylistId;
+            stylist_name = stylistName;
+        }
 
         public override bool Equals(System.Object otherStylist)
         {
@@ -34,15 +34,12 @@ namespace HairSalon.Models
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
-
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylist (stylist_name) VALUES (@name);";
-
-            MySqlParameter name = new MySqlParameter();
-            name.ParameterName = "@name";
-            name.Value = this.stylist_name;
-            cmd.Parameters.Add(name);
-
+            cmd.CommandText = @"INSERT INTO stylist (stylist_name) VALUES (@stylist_name);";
+            MySqlParameter stylist_name = new MySqlParameter();
+            stylist_name.ParameterName = "@stylist_name";
+            stylist_name.Value = this.stylist_name;
+            cmd.Parameters.Add(stylist_name);
             cmd.ExecuteNonQuery();
             stylist_id = (int) cmd.LastInsertedId;
             conn.Close();
@@ -50,7 +47,6 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
-
         }
 
         public static List<Stylist> GetAll()

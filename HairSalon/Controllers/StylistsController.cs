@@ -22,9 +22,9 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/stylists")]
-    public ActionResult Create(int stylist_id, string stylistName)
+    public ActionResult Create(int stylist_id, string stylist_name)
     {
-      Stylist newStylist = new Stylist(stylist_id, stylistName);
+      Stylist newStylist = new Stylist(stylist_id, stylist_name);
       newStylist.Save();
       List<Stylist> allStylists = Stylist.GetAll();
       return View("Index", allStylists);
@@ -37,7 +37,7 @@ namespace HairSalon.Controllers
       Stylist selectedStylist = Stylist.Find(id);
       List<Client> stylistClients = selectedStylist.GetClients();
       model.Add("stylist", selectedStylist);
-      model.Add("clients", stylistClients);
+      model.Add("client", stylistClients);
       return View(model);
     }
 
