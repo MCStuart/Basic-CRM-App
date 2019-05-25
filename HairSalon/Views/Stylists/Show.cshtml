@@ -27,7 +27,7 @@
 </ol>
 <h3>Add a specialty to this stylist:</h3>
 <form action="/stylists/@Model["stylist"].stylist_id/addSpecialty" method="post" >
-  <select name='stylist_id' type='number'>
+  <select name='specialtyId' type='number'>
     <option value = 0>None</option>
     @foreach (var specialty in @Model["specialty"])
     {
