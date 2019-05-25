@@ -73,10 +73,10 @@ namespace HairSalon.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO specialty (specialty_style) VALUES (@specialty_style);";
-            MySqlParameter style = new MySqlParameter();
-            style.ParameterName = "@specialty_style";
-            style.Value = this.specialty_style;
-            cmd.Parameters.Add(specialty_style);
+            MySqlParameter styleParam = new MySqlParameter();
+            styleParam.ParameterName = "@specialty_style";
+            styleParam.Value = this.specialty_style;
+            cmd.Parameters.Add(styleParam);
             MySqlParameter price = new MySqlParameter();
             cmd.ExecuteNonQuery();
             specialty_id = (int) cmd.LastInsertedId;
