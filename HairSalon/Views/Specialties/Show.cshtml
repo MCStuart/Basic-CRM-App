@@ -1,7 +1,5 @@
 
-<form action="/specialties/@Model["specialty"].specialty_id/delete" method="post">
-    <button type="submit">Delete Specialty</button>
-    <h1>Stylists with this specialization: </h1><br>
+    <h2>Stylists with this specialization: </h2>
     @if (Model["stylistSpecialties"].Count != 0)
     {
         @foreach (var stylist in Model["stylistSpecialties"])
@@ -22,5 +20,6 @@
     <button type="submit">Add Stylist</button>
 </form>
 
-<a href="/specialties/Model["specialty"].specialty_id/edit">Edit Specialty Information</a>
+<form action="/specialties/@Model["specialty"].specialty_id/delete" method="post">
+<button type="submit">Delete Specialty</button>
 <a href="/specialties">Return to list of Specialties</a>

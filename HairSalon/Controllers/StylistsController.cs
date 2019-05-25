@@ -39,7 +39,7 @@ namespace HairSalon.Controllers
             List<Client> stylistClients = selectedStylist.GetClients();
 
             System.Console.WriteLine("Showing Clients: " + string.Join(",", stylistClients));
-            
+
             model.Add("stylist", selectedStylist);
             model.Add("client", stylistClients);
             model.Add("specialty", allSpecialties);
@@ -59,9 +59,6 @@ namespace HairSalon.Controllers
         [HttpPost("/stylists/{stylistId}/clients/new")]
         public ActionResult CreateClient(int stylistId, string clientName)
         {
-
-            // client record insert happens here
-
             if (clientName != "") {
                 System.Console.WriteLine("Client name: " + clientName);
                 System.Console.WriteLine("Stylist ID: " + stylistId);
