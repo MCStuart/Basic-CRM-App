@@ -37,6 +37,9 @@ namespace HairSalon.Controllers
             List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();
             List<Specialty> allSpecialties = Specialty.GetAll();
             List<Client> stylistClients = selectedStylist.GetClients();
+
+            System.Console.WriteLine("Showing Clients: " + string.Join(",", stylistClients));
+            
             model.Add("stylist", selectedStylist);
             model.Add("client", stylistClients);
             model.Add("specialty", allSpecialties);
@@ -56,14 +59,27 @@ namespace HairSalon.Controllers
         [HttpPost("/stylists/{stylistId}/clients/new")]
         public ActionResult CreateClient(int stylistId, string clientName)
         {
+
+            // client record insert happens here
+
+            if (clientName != "") {
+                System.Console.WriteLine("Client name: " + clientName);
+                System.Console.WriteLine("Stylist ID: " + stylistId);
+                Client newClient = new Client(0,"",0);
+                newClient.client_name = clientName;
+                newClient.preferred_stylist_id = stylistId;
+                newClient.Save();
+            }
+
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist selectedStylist = Stylist.Find(stylistId);
             List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();
             List<Specialty> allSpecialties = Specialty.GetAll();
             List<Client> stylistClients = selectedStylist.GetClients();
             model.Add("stylist", selectedStylist);
+            System.Console.WriteLine("Showing Clients: " + string.Join(",", stylistClients));
             model.Add("client", stylistClients);
-            return RedirectToAction("Show", model);
+            return View("Show", model);
         }
 
         [HttpPost("/stylists/delete")]

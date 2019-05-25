@@ -38,16 +38,19 @@ namespace HairSalon.Models
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
+      System.Console.WriteLine("Saving client");
+      System.Console.WriteLine("Client name: " + this.client_name);
+      System.Console.WriteLine("Stylist ID: " + this.preferred_stylist_id);
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO client (client_name, preferred_stylist_id) VALUES (@ClientName, @PreferredStylistId);";
-      MySqlParameter name = new MySqlParameter();
-      name.ParameterName = "@ClientName";
-      name.Value = this.client_name;
-      cmd.Parameters.Add(client_name);
-      MySqlParameter preferredStylistId = new MySqlParameter();
-      preferredStylistId.ParameterName = "@PreferredStylistId";
-      preferredStylistId.Value = this.preferred_stylist_id;
-      cmd.Parameters.Add(preferred_stylist_id);
+      cmd.CommandText = @"INSERT INTO client (client_name, preferred_stylist_id) VALUES (@client_name, @preferred_stylist_id);";
+      MySqlParameter clientNameParam = new MySqlParameter();
+      clientNameParam.ParameterName = "@client_name";
+      clientNameParam.Value = this.client_name;
+      cmd.Parameters.Add(clientNameParam);
+      MySqlParameter preferredStylistParam = new MySqlParameter();
+      preferredStylistParam.ParameterName = "@preferred_stylist_id";
+      preferredStylistParam.Value = this.preferred_stylist_id;
+      cmd.Parameters.Add(preferredStylistParam);
       cmd.ExecuteNonQuery();
       client_id = (int) cmd.LastInsertedId;
       conn.Close();

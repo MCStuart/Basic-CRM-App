@@ -108,7 +108,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM client WHERE preferred_stylist_id = @stylist_id;";
+            cmd.CommandText = @"SELECT client_id, client_name, preferred_stylist_id FROM client WHERE preferred_stylist_id = @stylist_id;";
             MySqlParameter stylistId = new MySqlParameter();
             stylistId.ParameterName = "@stylist_id";
             stylistId.Value = this.stylist_id;
@@ -119,7 +119,14 @@ namespace HairSalon.Models
                 int clientId = rdr.GetInt32(0);
                 string clientName = rdr.GetString(1);
                 int preferredStylistId = rdr.GetInt32(2);
+
+                System.Console.WriteLine("clientName: " + clientName);
+                System.Console.WriteLine("preferredStylistId: " + preferredStylistId);
+
                 Client newClient = new Client(clientId, clientName, preferredStylistId);
+                newClient.client_id = clientId;
+                newClient.client_name = clientName;
+                newClient.preferred_stylist_id = preferredStylistId;
                 allStylistClients.Add(newClient);
             }
             conn.Close();
