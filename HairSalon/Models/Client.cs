@@ -43,10 +43,10 @@ namespace HairSalon.Models
       MySqlParameter name = new MySqlParameter();
       name.ParameterName = "@ClientName";
       name.Value = this.client_name;
+      cmd.Parameters.Add(client_name);
       MySqlParameter preferredStylistId = new MySqlParameter();
       preferredStylistId.ParameterName = "@PreferredStylistId";
       preferredStylistId.Value = this.preferred_stylist_id;
-      cmd.Parameters.Add(client_name);
       cmd.Parameters.Add(preferred_stylist_id);
       cmd.ExecuteNonQuery();
       client_id = (int) cmd.LastInsertedId;

@@ -54,7 +54,7 @@ namespace HairSalon.Controllers
         {
             Specialty selectedSpecialty = Specialty.Find(specialtyId);
             selectedSpecialty.Edit(newSpecialtyStyle);
-            return RedirectToAction("Show", new {id = specialtyId});
+            return RedirectToAction("Show");
         }
 
         [HttpPost("/specialties/{specialtyId}/delete")]
@@ -65,12 +65,12 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost("/specialties/{specialtyId}/add-stylist")]
+        [HttpPost("/specialties/{specialtyId}/addStylist")]
         public ActionResult AddStylist(int specialtyId, int id)
         {
             Specialty foundSpecialty = Specialty.Find(specialtyId);
             foundSpecialty.AddStylist(id);
-            return RedirectToAction("Show", new {id = specialtyId});
+            return RedirectToAction("Show");
         }
 
     }

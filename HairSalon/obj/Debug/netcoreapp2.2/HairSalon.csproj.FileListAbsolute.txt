@@ -14,13 +14,9 @@
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.TagHelpers.input.cache
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.TagHelpers.output.cache
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.RazorCoreGenerate.cache
-/Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Delete.g.cshtml.cs
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Edit.g.cshtml.cs
-/Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Index.g.cshtml.cs
-/Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/New.g.cshtml.cs
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/Show.g.cshtml.cs
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
-/Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Specialties/Delete.g.cshtml.cs
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Specialties/Index.g.cshtml.cs
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Specialties/New.g.cshtml.cs
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Specialties/Show.g.cshtml.cs
@@ -35,3 +31,5 @@
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.dll
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.pdb
 /Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/HairSalon.csproj.CopyComplete
+/Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Clients/New.g.cshtml.cs
+/Users/mcstuart/Desktop/Friday-Project-Week8/HairSalon/obj/Debug/netcoreapp2.2/Razor/Views/Specialties/Edit.g.cshtml.cs

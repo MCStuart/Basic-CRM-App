@@ -143,5 +143,57 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
         }
+
+        public List<Specialty> GetSpecialties()
+       {
+           List<Specialty> stylistSpecialties = new List<Specialty> {};
+           MySqlConnection conn = DB.Connection();
+           conn.Open();
+           var cmd = conn.CreateCommand() as MySqlCommand;
+           cmd.CommandText = @"SELECT specialty.* FROM stylist JOIN stylist_specialties ON (stylist.stylist_id = stylist_specialties.stylist_id) JOIN specialty ON (stylist_specialties.specialty_id = specialty.specialty_id) WHERE stylist.stylist_id = @searchId;";
+           MySqlParameter searchId = new MySqlParameter();
+           searchId.ParameterName = "@searchId";
+           searchId.Value = this.stylist_id;
+           cmd.Parameters.Add(searchId);
+           int specialtyId = 0;
+           string specialtyStyle = "";
+           var rdr = cmd.ExecuteReader() as MySqlDataReader;
+           while(rdr.Read())
+           {
+               specialtyId = rdr.GetInt32(0);
+               specialtyStyle= rdr.GetString(1);
+               Specialty newSpecialty = new Specialty(specialtyId, specialtyStyle);
+               stylistSpecialties.Add(newSpecialty);
+           }
+           conn.Close();
+           if (conn != null)
+           {
+               conn.Dispose();
+           }
+           return stylistSpecialties;
+       }
+
+       public void AddSpecialty(int specialtyId)
+       {
+           MySqlConnection conn = DB.Connection();
+           conn.Open();
+           var cmd = conn.CreateCommand() as MySqlCommand;
+           cmd.CommandText = @"INSERT INTO stylist_specialties (specialty_id, stylist_id) VALUES (@specialtyId, @stylistId);";
+           MySqlParameter specialty_Id = new MySqlParameter();
+           specialty_Id.ParameterName = "@specialtyId";
+           specialty_Id.Value = specialtyId;
+           cmd.Parameters.Add(specialty_Id);
+           MySqlParameter stylistid = new MySqlParameter();
+           stylistid.ParameterName = "@stylistId";
+           stylistid.Value = this.stylist_id;
+           cmd.Parameters.Add(stylistid);
+           cmd.ExecuteNonQuery();
+           stylist_id = (int) cmd.LastInsertedId;
+           conn.Close();
+           if (conn != null)
+           {
+               conn.Dispose();
+           }
+       }
     }
 }

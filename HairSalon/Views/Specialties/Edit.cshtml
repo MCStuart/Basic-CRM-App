@@ -1,0 +1,12 @@
+
+<h2><em>Change Information for: @Model.specialty_style</em></h2>
+
+<form action='/specialties/@Model.specialty_id/edit' method='post'>
+    <label for="new_specialty_style">Specialty name:</label>
+    <input id="new_specialty_style" name="new_specialty_style" type="text" value="@Model.specialty_style">
+    <button type='submit'>Save Changes</button>
+</form>
+
+<a href="/specialties/@Model.specialty_id">Return to @Model.specialty_style</a>
+<a href="/specialties">Return to list of Specialties</a>
+<a href="/">Return to homepage</a><br><br>

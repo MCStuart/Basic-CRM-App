@@ -33,10 +33,10 @@ namespace HairSalon
           template: "{controller=Home}/{action=Index}/{id?}");
       });
 
-        app.Run(async (context) =>
-        {
-          await context.Response.WriteAsync("Something went wrong!");
-        });
+        // app.Run(async (context) =>
+        // {
+        //   await context.Response.WriteAsync("Something went wrong!");
+        // });
 
     }
   }

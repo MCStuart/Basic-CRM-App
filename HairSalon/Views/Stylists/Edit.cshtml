@@ -1,0 +1,12 @@
+
+<h2><em>Update @Model.stylist_name's information:</em></h2>
+
+<form action='/stylists/@Model.stylist_id/edit' method='post'>
+    <label for="stylist_name">Stylist name:</label>
+    <input id="stylist_name" name="stylist_name" type="text" value="@Model.stylist_name">
+    <button type='submit'>Save Changes</button>
+</form>
+
+<a href="/stylists/@Model.stylist_id">Return to Stylist</a>
+<a href="/stylists">Return to list of all Stylists</a>
+<a href="/">Return to homepage</a><br><br>

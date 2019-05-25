@@ -1,0 +1,26 @@
+
+<form action="/specialties/@Model["specialty"].specialty_id/delete" method="post">
+    <button type="submit">Delete Specialty</button>
+    <h1 class="card-title">Stylists with this specialization: </h1><br>
+    @if (Model["stylistSpecialties"].Count != 0)
+    {
+        @foreach (var stylist in Model["stylistSpecialties"])
+        {
+            <li><a href="/stylists/@stylist.stylist_id">@stylist.stylist_name</a></li>
+        }
+    }
+</ol>
+<h2>Add a stylist to this specialty:</h2>
+<form action="/specialties/@Model["specialty"].specialty_id/addStylist" method="post" >
+    <select name='id' type='number'>
+        <option value = 0>None</option>
+        @foreach (var stylist in @Model["stylists"])
+        {
+            <option value='@stylist.stylist_id'>@stylist.stylist_name</option>
+        }
+    </select>
+    <button type="submit">Add Stylist</button>
+</form>
+
+<a href="/specialties/Model["specialty"].specialty_id/edit">Edit Specialty Information</a>
+<a href="/specialties">Return to list of Specialties</a>

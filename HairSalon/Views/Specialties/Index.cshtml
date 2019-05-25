@@ -1,0 +1,22 @@
+
+<h2><em>Select a Specialty for details</em></h2>
+
+<ul>
+    @if (Model.Count == 0)
+    {
+        <p>No specialties have been added yet</p>
+    }
+    @if(Model.Count != 0)
+    {
+        @foreach (var specialty in Model)
+        {
+            <a href="/specialties/@specialty.specialty_id">@specialty.specialty_style</a><br>
+        }
+    }
+</ul>
+
+<h1><a href="/specialties/new">Add a new specialty</a></h1>
+<a href="/">Back to homepage</a>
+<form action="/specialties/delete" method="post">
+    <button type="submit">Delete specialties</button>
+</form>
