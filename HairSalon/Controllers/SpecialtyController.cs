@@ -5,54 +5,74 @@ using HairSalon.Models;
 
 namespace HairSalon.Controllers
 {
-  public class SpecialtyController : Controller
-  {
 
-    // [HttpGet("/specialties")]
-    // public ActionResult Index()
-    // {
-    //   List<Specialty> allSpecialties = Specialty.GetAll();
-    //   return View(allSpecialties);
-    // }
-    //
-    // [HttpGet("/specialties/new")]
-    // public ActionResult New()
-    // {
-    //   return View();
-    // }
-    //
-    // [HttpPost("/specialties")]
-    // public ActionResult Create(string specialtyStyle)
-    // {
-    //   Specialty newSpecialty = new Specialty(specialtyStyle);
-    //   newSpecialty.Save();
-    //   List<Specialty> allSpecialties = Specialty.GetAll();
-    //   return View("Index", allSpecialties);
-    // }
-    //
-    // [HttpGet("/specialties/{id}")]
-    // public ActionResult Show(int id)
-    // {
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   Specialty selectedSpecialty = Specialty.Find(id);
-    //   List<Stylist> specialtyStylists = selectedSpecialty.GetStylists();
-    //   model.Add("specialty", selectedSpecialty);
-    //   model.Add("stylists", specialtyStylists);
-    //   return View(model);
-    // }
-    //
-    // [HttpPost("/specialties/{specialtyId}/stylists")]
-    // public ActionResult Create(int specialtyId, string stylistStyle)
-    // {
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   Specialty foundSpecialty = Specialty.Find(specialtyId);
-    //   Stylist newStylist = new Stylist(stylistStyle, foundSpecialty.GetId());
-    //   newStylist.Save();
-    //   List<Stylist> specialtyStylists = foundSpecialty.GetStylists();
-    //   model.Add("stylist", specialtyStylists);
-    //   model.Add("specialty", newStylist);
-    //   return View("Show", model);
-    // }
+    public class SpecialtiesController : Controller
+    {
+        [HttpGet("/specialties")]
+        public ActionResult Index()
+        {
+            List<Specialty> allSpecialties = Specialty.GetAll();
+            return View(allSpecialties);
+        }
 
-  }
+        [HttpGet("/specialties/new")]
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost("/specialties")]
+        public ActionResult Create(int id, string specialtyStyle)
+        {
+            Specialty newSpecialty = new Specialty(id, specialtyStyle);
+            newSpecialty.Save();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("/specialties/{specialtyId}")]
+        public ActionResult Show(int specialtyId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Specialty foundSpecialty = Specialty.Find(specialtyId);
+            List<Stylist> stylistSpecialties = foundSpecialty.GetStylists();
+            List<Stylist> allStylists = Stylist.GetAll();
+            model.Add("stylists", allStylists);
+            model.Add("specialty", foundSpecialty);
+            model.Add("stylistSpecialties", stylistSpecialties);
+            return View(model);
+        }
+
+        [HttpGet("/specialties/{specialtyId}/edit")]
+        public ActionResult Edit(int specialtyId)
+        {
+            Specialty foundSpecialty = Specialty.Find(specialtyId);
+            return View(foundSpecialty);
+        }
+
+        [HttpPost("/specialties/{specialtyId}/edit")]
+        public ActionResult Update(int specialtyId, string newSpecialtyStyle)
+        {
+            Specialty selectedSpecialty = Specialty.Find(specialtyId);
+            selectedSpecialty.Edit(newSpecialtyStyle);
+            return RedirectToAction("Show", new {id = specialtyId});
+        }
+
+        [HttpPost("/specialties/{specialtyId}/delete")]
+        public ActionResult Delete(int specialtyId)
+        {
+            Specialty selectedSpecialty = Specialty.Find(specialtyId);
+            selectedSpecialty.DeleteSpecialty();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("/specialties/{specialtyId}/add-stylist")]
+        public ActionResult AddStylist(int specialtyId, int id)
+        {
+            Specialty foundSpecialty = Specialty.Find(specialtyId);
+            foundSpecialty.AddStylist(id);
+            return RedirectToAction("Show", new {id = specialtyId});
+        }
+
+    }
+
 }
