@@ -11,7 +11,7 @@
   }
 </ol>
 
-<h3>@Model["stylist"].stylist_name's Specialties:</h3>
+<h3>Specialties:</h3>
 <ol>
   @if (Model["stylistSpecialties"].Count == 0)
   {
@@ -36,6 +36,10 @@
   </select>
   <button type="submit">Add Specialty</button>
 </form>
+
+
+<form action="/stylists/{stylistId}/deleteClients" method="Post">
+  <button type="submit">Delete all clients</button>
 
 <p><a href='/stylists/@Model["stylist"].stylist_id/clients/new'>Add a new client</a></p>
 <p><a href='/stylists'>Return to stylist list</a></p>

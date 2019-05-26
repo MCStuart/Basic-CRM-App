@@ -1,6 +1,12 @@
+
+
 <h1>Client Details: </h1>
 
 <h2>Name: @Model["client"].client_name</h2>
 <h3>Hair Styled By: @Model["stylist"].stylist_name</h3>
 
+
 <a href='/stylists'>Back to all stylists</a>
+@* <form action="/stylists/@Model["stylist"].stylist_id/clients/@Model["client"].client_id/delete" method="Post">
+  <button type="submit">Delete this client</button> *@
+</form>

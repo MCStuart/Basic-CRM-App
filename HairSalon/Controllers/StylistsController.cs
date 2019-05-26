@@ -59,15 +59,14 @@ namespace HairSalon.Controllers
         [HttpPost("/stylists/{stylistId}/clients/new")]
         public ActionResult CreateClient(int stylistId, string clientName)
         {
-            if (clientName != "") {
-                System.Console.WriteLine("Client name: " + clientName);
-                System.Console.WriteLine("Stylist ID: " + stylistId);
-                Client newClient = new Client(0,"",0);
-                newClient.client_name = clientName;
-                newClient.preferred_stylist_id = stylistId;
-                newClient.Save();
-            }
-
+            // if (clientName != "") {
+            //     System.Console.WriteLine("Client name: " + clientName);
+            //     System.Console.WriteLine("Stylist ID: " + stylistId);
+            //     Client newClient = new Client(0,"",0);
+            //     newClient.client_name = clientName;
+            //     newClient.preferred_stylist_id = stylistId;
+            //     newClient.Save();
+            // }
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist selectedStylist = Stylist.Find(stylistId);
             List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();

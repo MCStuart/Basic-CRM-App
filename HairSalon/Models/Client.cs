@@ -10,11 +10,11 @@ namespace HairSalon.Models
     public string client_name { get; set; }
     public int preferred_stylist_id { get; set; }
 
-    public Client(int client_id, string client_name, int preferred_stylist_id)
+    public Client(int clientId, string clientName, int preferredStylistId)
     {
-      client_id = client_id;
-      client_name = client_name;
-      preferred_stylist_id = preferred_stylist_id;
+      client_id = clientId;
+      client_name = clientName;
+      preferred_stylist_id = preferredStylistId;
     }
 
     public override bool Equals(System.Object otherClient)
@@ -113,7 +113,7 @@ namespace HairSalon.Models
     MySqlConnection conn = DB.Connection();
     conn.Open();
     var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"DELETE FROM clients WHERE client_id = @searchId;";
+    cmd.CommandText = @"DELETE FROM client WHERE client_id = @searchId;";
     MySqlParameter searchId = new MySqlParameter();
     searchId.ParameterName = "@searchId";
     searchId.Value = client_id;
@@ -140,29 +140,31 @@ namespace HairSalon.Models
       }
     }
 
-    public static Client Find(int id)
+    public static Client Find(int clientId)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM client WHERE client_id = (@stylistId);";
-      MySqlParameter thisId = new MySqlParameter();
-      thisId.ParameterName = "@stylistId";
-      thisId.Value = id;
-      cmd.Parameters.Add(thisId);
+      System.Console.WriteLine("Finding client: " + clientId);
+      cmd.CommandText = @"SELECT * FROM client WHERE client_id = (@clientId);";
+      MySqlParameter thisIdParam = new MySqlParameter();
+      thisIdParam.ParameterName = "@clientId";
+      thisIdParam.Value = clientId;
+      cmd.Parameters.Add(thisIdParam);
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-      int clientId = 0;
       string clientName = "";
       int preferredStylistId = 0;
-      // Client foundClient = new Client(clientName, clientDueDate, clientStylistId, clientId);
-      // DateTime dueDate = 0;
       while(rdr.Read())
       {
         clientId = rdr.GetInt32(0);
         clientName = rdr.GetString(1);
+        System.Console.WriteLine("Reading client name: " + clientName);
         preferredStylistId = rdr.GetInt32(2);
       }
       Client foundClient = new Client(clientId, clientName, preferredStylistId);
+      // foundClient.client_id = clientId;
+      // foundClient.client_name = clientName;
+      // foundClient.preferred_stylist_id = preferredStylistId;
       conn.Close();
       if (conn != null)
       {
